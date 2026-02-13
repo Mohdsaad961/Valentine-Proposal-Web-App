@@ -1,0 +1,481 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 15px 10px 100px 10px;
+        }
+
+        /* Animated background particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(-50px) translateX(-50px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(-150px) translateX(100px) rotate(270deg);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 35px 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1s ease;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .image-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ff6b9d;
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+            position: relative;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+            }
+            50% {
+                box-shadow: 0 15px 60px rgba(255, 107, 157, 0.8);
+            }
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #ff6b9d;
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .question {
+            font-size: 1.25em;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-weight: 500;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .romantic-quote {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.5;
+            padding: 12px 15px;
+            background: rgba(255, 107, 157, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 14px 35px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yes-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .yes-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .no-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .sorry-message {
+            font-size: 1.3em;
+            color: #ff6b9d;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: float-up 3s ease-in forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Balloon animation */
+        .balloon {
+            position: fixed;
+            font-size: 40px;
+            animation: float-up-balloon 3s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes float-up-balloon {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) translateX(var(--drift));
+                opacity: 0;
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 40px 35px;
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            text-align: center;
+            animation: popIn 0.6s ease forwards;
+            border: 3px solid #ff6b9d;
+            max-width: 90%;
+        }
+
+        @keyframes popIn {
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .success-message h2 {
+            color: #ff6b9d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-family: 'Brush Script MT', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .success-message .love-message {
+            margin-top: 20px;
+            color: #ff6b9d;
+            font-weight: 700;
+            font-size: 1.4em;
+            font-style: italic;
+        }
+
+        /* Footer - Updated color scheme */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85em;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            margin: 3px 0;
+            line-height: 1.4;
+        }
+
+        .footer .copyright {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .footer .tagline {
+            font-style: italic;
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkleAnim 1s ease-out forwards;
+            z-index: 999;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px 5px 80px 5px;
+            }
+
+            .container {
+                padding: 25px 20px;
+                max-width: 95%;
+            }
+
+            h1 {
+                font-size: 1.6em;
+                margin-bottom: 12px;
+            }
+
+            .question {
+                font-size: 1.1em;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .image-container {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+
+            .romantic-quote {
+                font-size: 0.8em;
+                padding: 10px 12px;
+                margin-bottom: 15px;
+            }
+
+            .footer {
+                font-size: 0.7em;
+                padding: 12px 8px;
+            }
+
+            .success-message {
+                padding: 30px 25px;
+                max-width: 95%;
+            }
+
+            .success-message h2 {
+                font-size: 2em;
+            }
+
+            .success-message p {
+                font-size: 1em;
+            }
+
+            .success-message .love-message {
+                font-size: 1.2em;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+
+            .retry-message {
+                font-size: 0.8em;
+                padding: 6px 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .question {
+                font-size: 1em;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.95em;
+            }
+
+            .image-container {
+                width: 90px;
+                height: 90px;
+            }
+
+            .buttons-container {
+                gap: 12px;
+            }
+        }
+
+        /* Landscape mode for phones */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 5px 5px 70px 5px;
+            }
+
+            .container {
+                padding: 20px 25px;
+            }
+
+            .image-container {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+                margin-bottom: 8px;
+            }
+
+            .romantic-quote {
+                font-size: 0.75em;
+                padding: 8px 10px;
+                margin-bottom: 12px;
+            }
+
+            .question {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.95em;
+            }
+
+            .footer {
+                padding: 8px;
+                font-size: 0.7em;
+            }
+        }
